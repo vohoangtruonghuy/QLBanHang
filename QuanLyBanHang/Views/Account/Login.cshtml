@@ -1,0 +1,169 @@
+﻿@model QuanLyBanHang.Models.Login
+
+@{
+    ViewBag.Title = "Login";
+    var useReg = Session["useReg"] as QuanLyBanHang.Models.User;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign Up Form by Colorlib</title>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="~/Style/RegisterAndLogin/fonts/material-icon/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap">
+    <!-- Main css -->
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: white;
+            color: #fff;
+        }
+
+        .main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .sign-in {
+            width: 600px;
+        }
+
+        .signin-content {
+            background-color: #222;
+            color: #fff;
+            border-radius: 10px;
+            padding: 30px;
+            width: 700px;
+            height: 500px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transform: translate(-50px,0px)
+        }
+
+        .signin-form {
+            flex: 1;
+            margin-right: 50px;
+        }
+
+        .signin-image {
+            flex: 1;
+        }
+
+        .form-title {
+            color: #fff;
+            margin-bottom: 20px;
+            text-align: center;
+            transform:translate(10px,0px);
+        }
+
+        .form-group label {
+            color: #fff;
+        }
+
+        .mb-3 {
+            transform: translate(20px,0px);
+        }
+
+        .form-control {
+            background-color: #444;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+            .form-control:focus {
+                background-color: #555;
+                color: #fff;
+            }
+
+        .btn-primary {
+            background-color: #6dabe4;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 150px;
+        }
+
+            .btn-primary:hover {
+                background-color: #4292dc;
+            }
+
+        .signin-image img {
+            border-radius: 10px;
+            width: 100%;
+        }
+
+        .signin-image-link {
+            color: #6dabe4;
+            text-decoration: none;
+            display: block;
+            margin-top: 20px;
+        }
+
+            .signin-image-link:hover {
+                color: #4292dc;
+            }
+        .small {
+            transform: translate(20px,0px);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main">
+
+        <!-- Sign up form -->
+        <section class="sign-in">
+            <div class="container">
+                <div class="signin-content">
+                    <div class="signin-image">
+                        <figure><img src="~/Style/RegisterAndLogin/images/signin-image.jpg" alt="sing up image"></figure>
+                        <a href="/Account/Register" class="signin-image-link">Chưa có tài khoản? Đăng ký!</a>
+                    </div>
+
+                    <div class="signin-form">
+                        <h2 class="form-title">Sign in</h2>
+                        @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="form-group">
+                                <div class="form-floating mb-3">
+                                    @Html.EditorFor(model => model.userMail, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.userMail, "", new { @class = "text-danger" })
+                                    <label for="inputPassword">Email</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    @Html.EditorFor(model => model.password, new { htmlAttributes = new { type = "Password", @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
+                                    <label for="inputPassword">Mật khẩu</label>
+                                </div>
+                                <p class="text-danger">@ViewBag.Fail</p>
+                                <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
+                                    <a class="small" href="#">Quên mật khẩu?</a>
+                                    <input type="submit" value="Đăng nhập" class="btn btn-primary" />
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- JS -->
+    <script src="~/Style/RegisterAndLogin/vendor/jquery/jquery.min.js"></script>
+    <script src="~/Style/RegisterAndLogin/js/main.js"></script>
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>

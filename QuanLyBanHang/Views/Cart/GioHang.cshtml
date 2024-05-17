@@ -1,0 +1,81 @@
+﻿@using QuanLyBanHang.Models;
+@model List<Cart>
+
+@{
+    ViewBag.Title = "GioHang";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<center>
+    <h2 class=""> Giỏ hàng <i class="fa fa-shopping-cart"></i></h2>
+    <br />
+    <table class="table-hover table-bordered divGioHang">
+        <tr style="">
+            <th> Mã SP</th>
+
+            <th> Tên SP</th>
+
+            <th> Ảnh bìa</th>
+
+            <th> Đơn giá</th>
+
+            <th> Số lượng</th>
+
+            <th> Thành tiền</th>
+        </tr>
+
+
+
+        @foreach (var item in Model)
+        {
+            <tr class="font-italic">
+                <td> @item.iId</td>
+
+                <td> @item.sName</td>
+
+                <td> <img src="@Url.Action("GetImage", "Products", new { id = item.iId })" /></td>
+
+                <td>  @String.Format("{0:0,0}", item.dPrice) VNĐ</td>
+
+                <td> @item.iQuantity</td>
+
+                <td> @String.Format("{0:0,0}", item.IntoMoney) VNĐ</td>
+            </tr>
+        }
+
+        <tr>
+            <td colspan="6" style="text-align:right">
+
+                @Html.ActionLink("Chỉnh sửa giỏ hàng", "SuaGioHang") <br />
+                @using (Html.BeginForm("ThanhToanDonHang", "Cart", new { @class = "" }))
+                {
+                    <br /> <input type="submit" value="Đặt hàng" class="btn btn-success" />
+                }
+            </td>
+        </tr>
+    </table>
+</center>
+<br />
+
+@*Css giỏ hàng*@
+<style type="text/css">
+    .divGioHang {
+        border: 2px solid #EEEEEE;
+        margin-left: 0%;
+        font-size: large
+    }
+
+        .divGioHang td {
+            padding: 40px;
+            border: 2px solid #EEEEEE;
+            text-align: center
+        }
+
+        .divGioHang th {
+            text-align: center
+        }
+    img{
+        width:50px;
+    }
+</style>

@@ -1,0 +1,48 @@
+﻿@model IEnumerable<QuanLyBanHang.Models.OrderDetail>
+
+@{
+    ViewBag.Title = "CTDetails";
+}
+
+<center>
+
+    <h2>Chi tiết sản phẩm</h2>
+
+    <table class="table table-bordered">
+        <tr>
+            <th>
+                Sản phẩm
+            </th>
+            <th>
+                Số lượng
+            </th>
+            <th>
+                Đơn giá / 1 sản phẩm
+            </th>
+            <th>
+                Thành tiền
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @String.Format("{0:0,0}", item.Price) VNĐ
+                </td>
+                <td>
+                    @String.Format("{0:0,0}", item.Amount) VNĐ
+                </td>
+            </tr>
+        }
+
+    </table>
+</center>
+<br />
+

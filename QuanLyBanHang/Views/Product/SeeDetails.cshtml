@@ -1,0 +1,41 @@
+﻿@model QuanLyBanHang.Models.Product
+
+@{
+    ViewBag.Title = "SeeDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="py-1">
+    <div class="container px-4 px-lg-5 mt-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <!-- Product image -->
+                    <div class="text-center mt-3">
+                        <img src="data:image;base64,@Convert.ToBase64String(Model.Image)" class="img-responsive" alt="@Model.Name" width="200" height="150" />
+                    </div>
+                    <!-- Product details -->
+                    <div class="card-body p-4">
+                        <div class="text-center">
+                            <!-- Product name -->
+                            <h5 class="fw-bolder">@Model.Name</h5>
+                            <!-- Product price -->
+                            <p class="text-muted">Giá: @String.Format("{0:0,0}", Model.Price) VNĐ</p>
+                            <!-- Product description -->
+                            <p>@Model.FullDes</p>
+                        </div>
+                    </div>
+                    <!-- Product actions -->
+                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        <div class="text-center">
+                            @using (Html.BeginForm("ThemGioHang", "Cart", new { iMaSP = Model.Id, strURL = Request.Url.ToString() }))
+                            {
+                                <input type="submit" value="Thêm vào giỏ hàng" id="btnGioHang" class="btn btn-outline-dark mt-auto" />
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

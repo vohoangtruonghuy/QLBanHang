@@ -1,0 +1,169 @@
+﻿@model QuanLyBanHang.Models.User
+
+@{
+    ViewBag.Title = "Register";
+    var useReg = Session["useReg"] as QuanLyBanHang.Models.User;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign Up Form by Colorlib</title>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="~/Style/RegisterAndLogin/fonts/material-icon/css/material-design-iconic-font.min.css">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: white;
+            color: #fff;
+        }
+
+        .main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .signup-content {
+            background-color: #222;
+            color: #fff;
+            border-radius: 10px;
+            padding: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .signup-form {
+            flex: 1;
+            margin-right: 50px;
+        }
+
+        .signup-image {
+            flex: 1;
+        }
+
+        .form-title {
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            color: #fff;
+        }
+
+        .form-control {
+            background-color: #444;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+            .form-control:focus {
+                background-color: #555;
+                color: #fff;
+            }
+
+        .btn-primary {
+            background-color: #6dabe4;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            width:150px;
+            transform:translate(-50px,0px);
+        }
+
+            .btn-primary:hover {
+                background-color: #4292dc;
+            }
+
+        .signup-image img {
+            border-radius: 10px;
+            width: 100%;
+        }
+
+        .signup-image-link {
+            color: #6dabe4;
+            text-decoration: none;
+            display: block;
+            margin-top: 20px;
+        }
+
+            .signup-image-link:hover {
+                color: #4292dc;
+            }
+    </style>
+</head>
+<body>
+
+    <div class="main">
+
+        <!-- Sign up form -->
+        <section class="signup">
+            <div class="container">
+                <div class="signup-content">
+                    <div class="signup-form">
+                        <h2 class="form-title">Sign up</h2>
+                        @using (Html.BeginForm("Register", "Accuont", FormMethod.Post, new { @class = "register-form", id = "register-form" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="form-group">
+                                <div class="form-floating mb-3">
+                                    @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+                                    <label for="username">Username</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { type = "password", @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                    <label for="password">Password</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    @Html.EditorFor(model => model.FullName, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.FullName, "", new { @class = "text-danger" })
+                                    <label for="name">Name</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { type = "email", @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                    <label for="email">Email</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    @Html.EditorFor(model => model.DayOfBirth, new { htmlAttributes = new { type = "date", @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.DayOfBirth, "", new { @class = "text-danger" })
+                                    <label for="dob">DOB</label>
+                                </div>
+                                <p class="text-danger">@ViewBag.RegOk</p>
+                                <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
+                                    <p style="color:green"></p>
+                                    <input type="submit" value="Register" class="btn btn-primary" />
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <div class="signup-image">
+                        <figure><img src="~/Style/RegisterAndLogin/images/signup-image.jpg" alt="sing up image"></figure>
+                        <a href="/Account/Login" class="signup-image-link">Tôi đã có tài khoản</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- JS -->
+    <script src="~/Style/RegisterAndLogin/vendor/jquery/jquery.min.js"></script>
+    <script src="~/Style/RegisterAndLogin/js/main.js"></script>
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>

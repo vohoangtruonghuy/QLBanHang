@@ -1,0 +1,176 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Dashboard - SB Admin</title>
+    <link href="~/Areas/Assets/dist/css/PagedList.css" rel="stylesheet" />
+    <link href="~/Areas/Assets/dist/css/styles.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
+
+    <style type="text/css">
+        /* Navbar */
+        .navbar {
+            padding: 10px 20px;
+        }
+
+        .menu1 {
+            color: #FFFFFF;
+            margin-right: 20px;
+        }
+
+        /* Dropdown menu */
+        .dropdown-menu {
+            background-color: #343A40;
+            border: none;
+            color: #FFFFFF;
+            padding: 10px;
+        }
+
+        .dropdown-divider {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin: 8px 0;
+        }
+
+        .dropdown-item {
+            color: #FFFFFF;
+            padding: 8px 20px;
+            transition: all 0.3s ease;
+        }
+
+            .dropdown-item:hover {
+                background-color: rgba(255, 255, 255, 0.1);
+            }
+
+        /* Sidebar */
+        .sb-sidenav {
+            background-color: #343A40 !important;
+            color: #FFFFFF !important;
+        }
+
+        .sb-sidenav-menu-heading {
+            color: #FF0000 !important;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+
+        .nav-link {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #FFFFFF !important;
+            transition: all 0.3s ease;
+        }
+
+            .nav-link:hover {
+                background-color: rgba(255, 255, 255, 0.1);
+            }
+    </style>
+</head>
+<body class="sb-nav-fixed">
+    @{ var u = Session["use"] as QuanLyBanHang.Models.User;}
+
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+        <h3 style="color: #FFFFFF; margin-right: 20px;">@Html.ActionLink("HUT SHOP", "Index", "Home", null, new { @class = "menu1" })</h3>
+        <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#">
+            <i class="fas fa-bars" style="font-size: 24px;"></i>
+        </button><!-- Navbar Search-->
+        <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+            <div class="input-group">
+                <input class="form-control" type="text" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" />
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="button"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+        </form>
+
+        <!-- Navbar-->
+        <ul class="navbar-nav ml-auto ml-md-0">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                    <a class="dropdown-item" style="color: #FF0000;" href="@Url.Action("Details", "Users", new { id = u.Id })"> Xin chào : @u.Username</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="/Account/LogOut"> ĐĂNG XUẤT</a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                <div class="sb-sidenav-menu">
+                    <div class="nav">
+                        <div class="sb-sidenav-menu-heading" style="color: #FF0000;"> <h5>MENU</h5></div>
+                        <div style="padding-left: 20px;">
+                            @Html.ActionLink("Loại hàng", "Index", "Categories", null, new { @style = "color: #FFFFFF;" })
+                        </div>
+                        <br />
+                        <div style="padding-left: 20px;">
+                            @Html.ActionLink("Bình luận", "Index", "Comments", null, new { @style = "color: #FFFFFF;" })
+                        </div>
+                        <br />
+                        <div style="padding-left: 20px;">
+                            @Html.ActionLink("Phân Quyền", "Index", "Decentralizations", null, new { @style = "color: #FFFFFF;" })
+                        </div>
+                        <br />
+                        <div style="padding-left: 20px;">
+                            @Html.ActionLink("Hóa đơn", "Index", "Orders", null, new { @style = "color: #FFFFFF;" })
+                        </div>
+                        <br />
+                        <div style="padding-left: 20px;">
+                            @Html.ActionLink("Hóa đơn chi tiết", "Index", "OrderDetails", null, new { @style = "color: #FFFFFF;" })
+                        </div>
+                        <br />
+                        <div style="padding-left: 20px;">
+                            @Html.ActionLink("Sản phẩm", "Index", "Products", null, new { @style = "color: #FFFFFF;" })
+                        </div>
+                        <br />
+                        <div style="padding-left: 20px;">
+                            @Html.ActionLink("Nhà cung cấp", "Index", "Suppliers", null, new { @style = "color: #FFFFFF;" })
+                        </div>
+                        <br />
+                        <div style="padding-left: 20px;">
+                            @Html.ActionLink("Người dùng", "Index", "Users", null, new { @style = "color: #FFFFFF;" })
+                        </div>
+                        <br />
+                    </div>
+                </div>
+
+                <div class="sb-sidenav-footer">
+                    <div class="small">Logged in as:</div>
+                    @u.Decentralization.NamePermission
+                </div>
+            </nav>
+        </div>
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid">
+                    @RenderBody()
+                </div>
+            </main>
+            <footer class="py-4 bg-light mt-auto">
+                <div class="container-fluid">
+                    <div class="d-flex align-items-center justify-content-between small">
+                        <div class="text-muted">Copyright &copy; HUT SHOP 2023</div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="~/Areas/Assets/dist/js/scripts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+    <script src="~/Areas/Assets/dist/assets/demo/chart-area-demo.js"></script>
+    <script src="~/Areas/Assets/dist/assets/demo/chart-bar-demo.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+    <script src="~/Areas/Assets/dist/assets/demo/datatables-demo.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+
