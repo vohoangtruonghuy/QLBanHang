@@ -1,4 +1,5 @@
-﻿using QuanLyBanHang.Models;
+﻿using PagedList;
+using QuanLyBanHang.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,17 +13,20 @@ namespace QuanLyBanHang.Controllers
     {
         private QuanLyBanHangEntities db = new QuanLyBanHangEntities();
         // GET: Order
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            //Kiểm tra đang đăng nhập
+            int pageSize = 10; 
+            int pageNumber = (page ?? 1);
             if (Session["use"] == null || Session["use"].ToString() == "")
             {
                 return RedirectToAction("Login", "Account");
             }
             User kh = (User)Session["use"];
             int maND = kh.Id;
-            var donhangs = db.Orders.Where(d => d.UserID == maND);
-            return View(donhangs.ToList());
+            var donhangs = db.Orders.Where(d => d.UserID == maND).OrderByDescending(d => d.OrderDate);
+            var pagedDonhangs = donhangs.ToPagedList(pageNumber, pageSize);
+
+            return View(pagedDonhangs);
         }
 
         // GET: Donhangs/Details/5

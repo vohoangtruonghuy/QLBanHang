@@ -324,6 +324,18 @@
     <Content Include="Image\7.jpg" />
     <Content Include="Image\8.jpg" />
     <Content Include="Image\9.jpg" />
+    <Content Include="Image\anh1.jpg" />
+    <Content Include="Image\Anh2.jpg" />
+    <Content Include="Image\anh3.jpg" />
+    <Content Include="Image\anh4.jpg" />
+    <Content Include="Image\anh5.jpg" />
+    <Content Include="Image\logofuishop.png" />
+    <Content Include="Image\styteDT.jpg" />
+    <Content Include="Image\styteDTS.jpg" />
+    <Content Include="Image\styteMCA.jpg" />
+    <Content Include="Image\styteMT.jpg" />
+    <Content Include="Image\styteQAGD.jpg" />
+    <Content Include="Image\styteSach.jpg" />
     <Content Include="Models\EntityState.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>EntityState.edmx</DependentUpon>
@@ -437,6 +449,9 @@
       <DependentUpon>EntityState.edmx</DependentUpon>
     </Content>
     <Content Include="Areas\Admin\Views\Orders\CTDetails.cshtml" />
+    <None Include="Properties\PublishProfiles\vohoangtruonghuy-001-site1 - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\vohoangtruonghuy-001-site1 - FTP1.pubxml" />
+    <None Include="Properties\PublishProfiles\vohoangtruonghuy-001-site1 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -448,7 +463,6 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Style\RegisterAndLogin\css\style.css" />
     <Content Include="Style\RegisterAndLogin\fonts\material-icon\css\material-design-iconic-font.css" />
     <Content Include="Style\RegisterAndLogin\fonts\material-icon\css\material-design-iconic-font.min.css" />
     <Content Include="Style\RegisterAndLogin\fonts\material-icon\fonts\Material-Design-Iconic-Font.svg" />
@@ -473,6 +487,8 @@
     <Content Include="Style\RegisterAndLogin\js\main.js" />
     <Content Include="Style\RegisterAndLogin\vendor\jquery\jquery-ui.min.js" />
     <Content Include="Style\RegisterAndLogin\vendor\jquery\jquery.min.js" />
+    <Content Include="Style\StyleMobile\style.css" />
+    <Content Include="Style\StytePage\style.css" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -504,7 +520,6 @@
     <Content Include="Style\RegisterAndLogin\.sass-cache\7643c8aa2e335ff5e104bc47d8dd7f1a0693bb39\variables.scssc" />
     <Content Include="Style\RegisterAndLogin\.sass-cache\9dc767a56f3dc2f8a933300255cd2265f13191d4\main.scssc" />
     <Content Include="Style\RegisterAndLogin\.sass-cache\9dc767a56f3dc2f8a933300255cd2265f13191d4\responsive.scssc" />
-    <Content Include="Style\RegisterAndLogin\css\style.css.map" />
     <Content Include="Style\RegisterAndLogin\fonts\material-icon\fonts\Material-Design-Iconic-Font.eot" />
     <Content Include="Style\RegisterAndLogin\fonts\material-icon\fonts\Material-Design-Iconic-Font.ttf" />
     <Content Include="Style\RegisterAndLogin\fonts\material-icon\fonts\Material-Design-Iconic-Font.woff" />
@@ -601,6 +616,7 @@
     <Content Include="Views\Order\Details.cshtml" />
     <Content Include="Views\Category\CategoryPartial.cshtml" />
     <Content Include="Views\Product\SeeCatalogDatails.cshtml" />
+    <Content Include="Views\Product\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

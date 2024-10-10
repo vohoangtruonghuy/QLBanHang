@@ -30,33 +30,46 @@
     @{ var u = Session["use"] as QuanLyBanHang.Models.User; }
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            @Html.ActionLink("HUT SHOP", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            <a href="@Url.Action("Index", "Home")" class="navbar-brand">
+                <img src="~/Image/logofuishop.png" alt="Logo" style="height: 80px;">
+                FUI SHOP
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"> @Html.ActionLink("Giới thiệu", "About", "Home", new { area = "" }, new { @class = "nav-link" }) </li>
-                    <li class="nav-item"> @Html.ActionLink("Sản phẩm", "Index", "Product", new { area = "" }, new { @class = "nav-link" }) </li>
+                    <li class="nav-item"> @Html.ActionLink("Trang chủ", "Index", "Home", new { area = "" }, new { @class = "nav-link" }) </li>
+                    <li class="nav-item ">@Html.ActionLink("Sản phẩm", "index", "product", new { area = "" }, new { @class = "nav-link " }) </li>
                     <li class="nav-item"> @Html.ActionLink("Tin tức", "Index", "TinTuc", new { area = "" }, new { @class = "nav-link" }) </li>
                     <li class="nav-item"> @Html.ActionLink("Liên hệ", "Contact", "Home", new { area = "" }, new { @class = "nav-link" }) </li>
                 </ul>
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                         @Html.ActionLink("Giỏ hàng", "GioHangPartial", "Cart", new { area = "" }, new { @class = "bi bi-cart-fill" })
-                        <span class="badge bg-dark text-white ms-1 rounded-pill">@ViewBag.TongSoLuong</span>
-                    </li>
-                </ul>
+
+                <form class="location" action="@Url.Action("Search", "Product")" method="get">
+                    <input type="text" name="keyword" placeholder="Tìm kiếm...">
+                    <button type="submit">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </form>
+
+
                 <ul class="navbar-nav ms-auto">
                     @{
                         if (u != null)
                         {
+                           
+                            <li class="nav-item">
+                                @Html.ActionLink(".", "GioHangPartial", "Cart", new { area = "" }, new { @class = "bi bi-cart-fill" })
+                                <span class="badge bg-dark text-white ms-1 rounded-pill">@ViewBag.TongSoLuong</span>
+                            </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Xin chào, @u.Username
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                                    @Html.ActionLink("Profile", "Profile", "Account", new { id = u.Id }, new { @class = "dropdown-item profile-link" })
+                                    @Html.ActionLink("Đơn hàng", "Index", "Order", new { id = u.Id }, new { @class = "dropdown-item profile-link" })
+                                    <div class="dropdown-divider"></div>
+                                    @Html.ActionLink("Thông tin", "Profile", "Account", new { id = u.Id }, new { @class = "dropdown-item profile-link" })
                                     <div class="dropdown-divider"></div>
                                     @Html.ActionLink("Đăng xuất", "LogOut", "Account", null, new { @class = "dropdown-item logout-link" })
                                 </div>
@@ -119,7 +132,7 @@
         </div>
         <hr />
         <div class="py-3 text-center">
-            <div class="container"><small>Copyright &copy; Cửa hàng bách hóa tổng hợp HUT 2023</small></div>
+            <div class="container"><small>Cửa hàng bách hóa tổng hợp FUI SHOP</small></div>
         </div>
     </footer>
 
@@ -132,3 +145,18 @@
     @RenderSection("DoanJS", false)
 </body>
 </html>
+
+<style>
+    .search-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .search-button i {
+        margin-right: 5px;
+    }
+    .location{
+        transform:translate(100px,0px);
+    }
+</style>

@@ -1,15 +1,18 @@
 ﻿@model PagedList.IPagedList<QuanLyBanHang.Models.Product>
 @using PagedList.Mvc;
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
+<link href="~/Style/StytePage/style.css" rel="stylesheet" />
+
 <style>
     img {
         width: 100px;
     }
 </style>
-<h2>Index</h2>
+<h2>Sản phẩm</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")

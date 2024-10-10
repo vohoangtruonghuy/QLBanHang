@@ -13,11 +13,11 @@ namespace QuanLyBanHang
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            routes.MapRoute(
-                name: "ProductDetails",
-                url: "Product/SeeDetails/{Masp}",
-                defaults: new { controller = "Product", action = "SeeDetails", Masp = UrlParameter.Optional }
-            );
+            //routes.MapRoute(
+            //    name: "ProductDetails",
+            //    url: "Product/SeeDetails/{Masp}",
+            //    defaults: new { controller = "Product", action = "SeeDetails", Masp = UrlParameter.Optional }
+            //);
 
             routes.MapRoute(
                 name: "Default",

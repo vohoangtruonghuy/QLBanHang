@@ -1,10 +1,12 @@
-﻿using QuanLyBanHang.Models;
+﻿using PagedList;
+using QuanLyBanHang.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI;
 
 namespace QuanLyBanHang.Controllers
 {
@@ -12,51 +14,75 @@ namespace QuanLyBanHang.Controllers
     {
         // GET: Product
         private QuanLyBanHangEntities db = new QuanLyBanHangEntities();
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            var products = db.Products.ToList();
+            int pageSize = 8;
+            int pageNumber = (page ?? 1);
+
+            var products = db.Products.OrderBy(p => p.Id).ToPagedList(pageNumber, pageSize);
             return View(products);
         }
 
-        public ActionResult Jewelry()
+        public ActionResult Jewelry(int? page)
         {
-            var ip = db.Products.Where(n => n.CatID == 1).Take(4).ToList();
+            int pageSize = 4;
+            int pageNumber = (page ?? 1);
+
+            var ip = db.Products.Where(n => n.CatID == 1).OrderBy(p => p.Id).ToPagedList(pageNumber, pageSize);
             return PartialView(ip);
         }
 
-        public ActionResult Computer()
+        public ActionResult Computer(int? page)
         {
-            var ip = db.Products.Where(n => n.CatID == 2).Take(4).ToList();
+            int pageSize = 4;
+            int pageNumber = (page ?? 1);
+
+            var ip = db.Products.Where(n => n.CatID == 2).OrderBy(p => p.Id).ToPagedList(pageNumber, pageSize);
             return PartialView(ip);
         }
 
-        public ActionResult ClothesAndShoes()
+        public ActionResult ClothesAndShoes(int? page)
         {
-            var ip = db.Products.Where(n => n.CatID == 3).Take(4).ToList();
+            int pageSize = 4;
+            int pageNumber = (page ?? 1);
+
+            var ip = db.Products.Where(n => n.CatID == 3).OrderBy(p => p.Id).ToPagedList(pageNumber, pageSize);
             return PartialView(ip);
         }
 
-        public ActionResult Camera()
+        public ActionResult Camera(int? page)
         {
-            var ip = db.Products.Where(n => n.CatID == 4).Take(4).ToList();
+            int pageSize = 4;
+            int pageNumber = (page ?? 1);
+
+            var ip = db.Products.Where(n => n.CatID == 4).OrderBy(p => p.Id).ToPagedList(pageNumber, pageSize);
             return PartialView(ip);
         }
 
-        public ActionResult Phone()
+        public ActionResult Phone(int? page)
         {
-            var ip = db.Products.Where(n => n.CatID == 5).Take(4).ToList();
+            int pageSize = 4;
+            int pageNumber = (page ?? 1);
+
+            var ip = db.Products.Where(n => n.CatID == 5).OrderBy(p => p.Id).ToPagedList(pageNumber, pageSize);
             return PartialView(ip);
         }
 
-        public ActionResult Book()
+        public ActionResult Book(int? page)
         {
-            var ip = db.Products.Where(n => n.CatID == 7).Take(4).ToList();
+            int pageSize = 4;
+            int pageNumber = (page ?? 1);
+
+            var ip = db.Products.Where(n => n.CatID == 7).OrderBy(p => p.Id).ToPagedList(pageNumber, pageSize);
             return PartialView(ip);
         }
 
-        public ActionResult Other()
+        public ActionResult Other(int? page)
         {
-            var ip = db.Products.Where(n => n.CatID == 8).Take(4).ToList();
+            int pageSize = 4;
+            int pageNumber = (page ?? 1);
+
+            var ip = db.Products.Where(n => n.CatID == 8).OrderBy(p => p.Id).ToPagedList(pageNumber, pageSize);
             return PartialView(ip);
         }
 
@@ -82,6 +108,12 @@ namespace QuanLyBanHang.Controllers
             }
 
             var products = db.Products.Where(n => n.CatID == CGId).ToList();
+            return View(products);
+        }
+
+        public ActionResult Search(string keyword)
+        {
+            var products = db.Products.Where(p => p.Name.Contains(keyword)).ToList();
             return View(products);
         }
 

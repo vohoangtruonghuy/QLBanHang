@@ -159,54 +159,62 @@ namespace QuanLyBanHang.Controllers
         [HttpPost]
         public ActionResult DatHang(FormCollection donhangForm)
         {
-            //Kiểm tra đăng đăng nhập
+            // Check if the user is logged in
             if (Session["use"] == null || Session["use"].ToString() == "")
             {
                 return RedirectToAction("Login", "Account");
             }
-            //Kiểm tra giỏ hàng
+
+            // Check if the cart exists
             if (Session["GioHang"] == null)
             {
-                RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Home");
             }
-            Console.WriteLine(donhangForm);
-            string diachinhanhang = donhangForm["Address"].ToString();
-            string thanhtoan = donhangForm["MaTT"].ToString();
+
+            // Retrieve form values
+            string diachinhanhang = donhangForm["Address"];
+            string thanhtoan = donhangForm["MaTT"];
             int ptthanhtoan = Int32.Parse(thanhtoan);
 
-            //Thêm đơn hàng
+            // Create a new order
             Order ddh = new Order();
             User kh = (User)Session["use"];
             List<Cart> gh = GetCart();
-            ddh.UserID = kh.Id;
-            ddh.OrderDate = DateTime.Now;
-            ddh.Total = ptthanhtoan;
-            ddh.Address = diachinhanhang;
             decimal tongtien = 0;
             foreach (var item in gh)
             {
                 decimal thanhtien = item.iQuantity * (decimal)item.dPrice;
                 tongtien += thanhtien;
             }
+
+            ddh.UserID = kh.Id;
+            ddh.OrderDate = DateTime.Now;
             ddh.Total = tongtien;
+            ddh.Address = diachinhanhang;
+            ddh.Pay = ptthanhtoan; // Set the payment method here
+
             db.Orders.Add(ddh);
             db.SaveChanges();
-            //Thêm chi tiết đơn hàng
+
+            // Add order details
             foreach (var item in gh)
             {
-                OrderDetail ctDH = new OrderDetail();
-                decimal thanhtien = item.iQuantity * (decimal)item.dPrice;
-                ctDH.OrderID = ddh.Id;
-                ctDH.ProID = item.iId;
-                ctDH.Quantity = item.iQuantity;
-                ctDH.Price = (decimal)item.dPrice;
-                ctDH.Amount = (decimal)thanhtien;
-                ctDH.PaymentMethods = 1;
+                OrderDetail ctDH = new OrderDetail
+                {
+                    OrderID = ddh.Id,
+                    ProID = item.iId,
+                    Quantity = item.iQuantity,
+                    Price = (decimal)item.dPrice,
+                    Amount = item.iQuantity * (decimal)item.dPrice,
+                    PaymentMethods = ptthanhtoan // Set the payment method for the order detail
+                };
                 db.OrderDetails.Add(ctDH);
             }
             db.SaveChanges();
+
             return RedirectToAction("Index", "Order");
         }
+
         #endregion
 
         public ActionResult ThanhToanDonHang()

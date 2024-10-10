@@ -1,33 +1,122 @@
-﻿@{
+﻿@using QuanLyBanHang.Models;
+
+@{
     ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<main>
-    <section class="row" aria-labelledby="aspnetTitle">
-        <h1 id="title">ASP.NET</h1>
-        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-        <p><a href="https://asp.net" class="btn btn-primary btn-md">Learn more &raquo;</a></p>
-    </section>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link href="~/Style/StyleMobile/style.css" rel="stylesheet" />
+    <style>
+        .slideshow img {
+            display: none; /* Ẩn tất cả các hình ảnh */
+            width: 100%;
+        }
 
-    <div class="row">
-        <section class="col-md-4" aria-labelledby="gettingStartedTitle">
-            <h2 id="gettingStartedTitle">Getting started</h2>
-            <p>
-                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-                enables a clean separation of concerns and gives you full control over markup
-                for enjoyable, agile development.
-            </p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-        </section>
-        <section class="col-md-4" aria-labelledby="librariesTitle">
-            <h2 id="librariesTitle">Get more libraries</h2>
-            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-        </section>
-        <section class="col-md-4" aria-labelledby="hostingTitle">
-            <h2 id="hostingTitle">Web Hosting</h2>
-            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-        </section>
-    </div>
-</main>
+            .slideshow img.active {
+                display: block; /* Hiển thị hình ảnh đang được chọn */
+            }
+    </style>
+</head>
+<body>
+    <header class="bg-body py-0">
+        <center>
+            <div class="row">
+                <div class="col-md-16">
+                    <div class="slideshow">
+                        <img src="~/Image/styteDT.jpg" alt="Banner Image" class="active" style="height:700px;" />
+                        <img src="~/Image/anh4.jpg" alt="Banner Image" style="height:700px;" />
+                        <img src="~/Image/anh2.jpg" alt="Banner Image" style="height:700px;" />
+                        <img src="~/Image/anh3.jpg" alt="Banner Image" style="height:700px;" />
+                    </div>
+                </div>
+            </div>
+        </center>
+    </header>
+    @Html.Action("book", "product")
+    <div>
+        <center>
+            <img class="img-responsive" src="~/Image/styteSach.jpg" style="width:100%; height:200px; " />
+        </center>
+    </div> <br />
+    @Html.Action("Camera", "product")
+    <div>
+        <center>
+            <img class="img-responsive" src="~/Image/styteMCA.jpg" style="width:100%; height:200px; " />
+        </center>
+    </div> <br />
+    @Html.Action("ClothesAndShoes", "product")
+    <div>
+        <center>
+            <img class="img-responsive" src="~/Image/styteQAGD.jpg" style="width:100%; height:200px; " />
+        </center>
+    </div> <br />
+    @Html.Action("Computer", "product")
+    <div>
+        <center>
+            <img class="img-responsive" src="~/Image/styteMT.jpg" style="width:100%; height:200px; " />
+        </center>
+    </div> <br />
+    @Html.Action("jewelry", "product")
+    <div>
+        <center>
+            <img class="img-responsive" src="~/Image/styteDTS.jpg" style="width:100%; height:200px; " />
+        </center>
+    </div> <br />
+    @Html.Action("Phone", "product")
+    <div>
+        <center>
+            <img class="img-responsive" src="~/Image/styteDT.jpg" style="width:100%; height:200px; " />
+        </center>
+    </div> <br />
+    @Html.Action("Other", "product")
+    <div>
+        <center>
+            <img class="img-responsive" src="~/Image/anh5.jpg" style="width:100%; height:200px; " />
+        </center>
+    </div> <br />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- JavaScript for slideshow -->
+    <script>
+        var index = 0;
+        var slides = document.querySelectorAll('.slideshow img');
+
+        function showSlide() {
+            // Ẩn tất cả các ảnh
+            for (var i = 0; i < slides.length; i++) {
+                slides[i].classList.remove('active');
+            }
+            // Hiển thị ảnh tiếp theo
+            index = (index + 1) % slides.length;
+            slides[index].classList.add('active');
+        }
+
+        // Hiển thị ảnh đầu tiên ban đầu
+        showSlide();
+
+        // Tự động chuyển ảnh sau mỗi 5 giây
+        setInterval(showSlide, 5000);
+    </script>
+</body>
+</html>

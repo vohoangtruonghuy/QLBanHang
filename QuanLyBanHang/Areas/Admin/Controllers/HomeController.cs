@@ -46,7 +46,7 @@ namespace QuanLyBanHang.Areas.Admin.Controllers
             try
             {
                 decimal TongDoanhThu = db.OrderDetails
-                    .Where(m => m.PaymentMethods == 1)
+                    .Where(m => m.PaymentMethods == 1|| m.PaymentMethods==2)
                     .Sum(n => (decimal?)n.Quantity * n.Price) ?? 0;
                 return TongDoanhThu;
             }
@@ -62,7 +62,7 @@ namespace QuanLyBanHang.Areas.Admin.Controllers
             try
             {
                 int TongSoLuong = db.OrderDetails
-                    .Where(m => m.PaymentMethods == 1)
+                    .Where(m => m.PaymentMethods == 1||m.PaymentMethods==2)
                     .Sum(n => (int?)n.Quantity) ?? 0;
                 return TongSoLuong;
             }

@@ -77,7 +77,7 @@ namespace QuanLyBanHang.Controllers
             {
                 Session["use"] = islogin;
 
-                if (userMail == "votruonghuy2004@gmail.com")
+                if (islogin.PermissionId == 1)
                 {
                     return RedirectToAction("Index", "Admin/Home");
                 }
@@ -92,6 +92,7 @@ namespace QuanLyBanHang.Controllers
                 return View("Login");
             }
         }
+
 
         public ActionResult LogOut()
         {

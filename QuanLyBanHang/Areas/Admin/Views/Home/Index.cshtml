@@ -4,10 +4,127 @@
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Index</h2>
-<div>
-    <h3>Tổng Doanh Thu: @ViewBag.TongDoanhThu VND</h3>
-    <h3>Tổng Số Lượng Sản Phẩm Đã Bán: @ViewBag.TongSoLuong</h3>
-    <h3>Tổng Số Lượng Đơn Hàng: @ViewBag.SoLuongDonHang</h3>
-    <h3>Tổng Số Lượng Khách Hàng: @ViewBag.SoLuongKhachHang</h3>
-</div>
+<h2>Thống Kê</h2>
+
+
+<section class="content">
+    <div class="row">
+        <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-success">
+                <div class="inner">
+                    <h3>@String.Format("{0:N0}", @ViewBag.TongDoanhThu)</h3>
+
+                    <p>Tổng Doanh Thu</p>
+                </div>
+                <div class="icon">
+                    <i class="ion-social-usd-outline"></i>
+                </div>
+                <a href="orders/index" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-6">
+
+            <div class="small-box bg-primary">
+                <div class="inner">
+                    <h3>@ViewBag.SoLuongDonHang</h3>
+
+                    <p>Tổng Đơn Hàng</p>
+                </div>
+                <div class="icon">
+                    <i class="ion-android-cart"></i>
+                </div>
+                <a href="orders/index" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-6">
+
+            <div class="small-box bg-danger">
+                <div class="inner">
+                    <h3>@ViewBag.SoLuongKhachHang</h3>
+
+                    <p>Thành Viên</p>
+                </div>
+                <div class="icon">
+                    <i class="ion-ios-people"></i>
+                </div>
+                <a href="users/index" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-6">
+
+            <div class="small-box bg-secondary">
+                <div class="inner">
+                    <h3>@ViewBag.TongSoLuong</h3>
+
+                    <p>Sản phẩm đã mua</p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-eye"></i>
+                </div>
+                <a href="orderdetails/index" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Định dạng chung cho các hộp nhỏ */
+    h3{
+        color:white;
+    }
+
+    .small-box {
+        border-radius: 10px;
+        margin-bottom: 20px;
+        overflow: hidden;
+    }
+
+        /* Định dạng nội dung bên trong */
+        .small-box .inner {
+            padding: 10px;
+        }
+
+        /* Định dạng tiêu đề */
+        .small-box h3 {
+            font-size: 30px;
+            font-weight: bold;
+            margin-top: 10px;
+            margin-bottom: 0;
+        }
+
+        /* Định dạng phần mô tả */
+        .small-box p {
+            margin-top: 5px;
+            margin-bottom: 0;
+        }
+
+        /* Định dạng biểu tượng */
+        .small-box .icon {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 50px;
+            color: rgba(255, 255, 255, 0.15);
+        }
+
+    /* Định dạng footer */
+    .small-box-footer {
+        display: block;
+        padding: 3px 0;
+        text-align: center;
+        font-size: 14px;
+        color: #ffffff;
+        background: rgba(0, 0, 0, 0.1);
+        transition: all 0.3s;
+    }
+
+        .small-box-footer:hover {
+            text-decoration: none;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+</style>

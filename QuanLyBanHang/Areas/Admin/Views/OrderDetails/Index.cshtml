@@ -5,7 +5,7 @@
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Hóa đơn chi tiết</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -46,7 +46,12 @@
                 @Html.DisplayFor(modelItem => item.Amount)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.PaymentMethods)
+                @{ if (@item.PaymentMethods == 1)
+                    {
+                        <div style="color:red">Thanh toán tiền mặt</div> }
+                    else if (@item.PaymentMethods == 2)
+                    {
+                        <div style="color:brown">Thanh toán chuyển khoản</div> } }
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Order.Address)

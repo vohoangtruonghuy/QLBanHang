@@ -8,7 +8,7 @@
     <h2 class=""> Thông tin cá nhân khách hàng </h2>
     <br />
     <table class="table table-bordered">
-        <tr class="table-success">
+        <tr class="table-secondary">
             <th> Họ & tên</th>
 
             <th> Passwork </th>
@@ -37,17 +37,6 @@
             <td>  @Html.DisplayFor(model => model.DayOfBirth)</td>
         </tr>
 
-
-        @*<tr>
-                <td colspan="5" style="text-align:right">
-                    <button class="btn btn-info">
-                        @Html.ActionLink("Xem đơn hàng", "Index", "", new { area = "" }, new { @class = "nav-link py-3 px-0 px-lg-3 rounded" })
-                    </button>
-                    <button class="btn btn-primary">
-                        @Html.ActionLink("Chỉnh sửa hồ sơ", "Edit", new { id = Model.Id }, new { @class = "nav-link py-3 px-0 px-lg-3 rounded" })
-                    </button>
-                </td>
-            </tr>*@
     </table>
     <button class="btn btn-info">
         @Html.ActionLink("Xem đơn hàng", "Index", "", new { area = "" }, new { @class = "nav-link py-3 px-0 px-lg-3 rounded" })

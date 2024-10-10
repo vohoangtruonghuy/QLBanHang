@@ -1,9 +1,10 @@
-﻿@model IEnumerable<QuanLyBanHang.Models.Product>
-
+﻿@model PagedList.IPagedList<QuanLyBanHang.Models.Product>
+@using PagedList.Mvc;
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<link href="~/Style/StytePage/style.css" rel="stylesheet" />
 
 <section class="py-1">
     <center><h3> Tất cả sản phẩm </h3></center>
@@ -25,7 +26,7 @@
                                 <!-- Product name -->
                                 <h5 class="fw-bolder">@product.Name</h5>
                                 <!-- Product price -->
-                                Giá: @String.Format("{0:0,0}", product.Price) $
+                                Giá: @String.Format("{0:0,0}", product.Price) VNĐ
                             </div>
                         </div>
                         <!-- Product actions -->
@@ -56,3 +57,4 @@
         });
     });
 </script>
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }), PagedListRenderOptions.ClassicPlusFirstAndLast)
