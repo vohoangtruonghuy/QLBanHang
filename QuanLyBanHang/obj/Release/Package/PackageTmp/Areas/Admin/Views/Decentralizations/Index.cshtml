@@ -1,0 +1,35 @@
+﻿@model IEnumerable<QuanLyBanHang.Models.Decentralization>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table table-bordered">
+    <tr class="table-secondary">
+        <th>
+            @Html.DisplayNameFor(model => model.NamePermission)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NamePermission)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.PermissionId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.PermissionId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.PermissionId })
+            </td>
+        </tr>
+    }
+
+</table>

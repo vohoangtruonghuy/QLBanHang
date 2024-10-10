@@ -1,0 +1,60 @@
+﻿@model PagedList.IPagedList<QuanLyBanHang.Models.Product>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Style/StytePage/style.css" rel="stylesheet" />
+
+<section class="py-1">
+    <center><h3> Tất cả sản phẩm </h3></center>
+    <div class="container px-4 px-lg-5 mt-5">
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            @foreach (var product in Model)
+            {
+                <div class="col mb-5">
+                    <div class="card h-100">
+                        <!-- Product image -->
+                        <a href="@Url.Action("SeeDetails", "Product", new { Masp = product.Id })">
+                            <center>
+                                <img src="data:image;base64,@Convert.ToBase64String(product.Image)" class="img-responsive" alt="@product.Name" width="200" height="150" />
+                            </center>
+                        </a>
+                        <!-- Product details -->
+                        <div class="card-body p-4">
+                            <div class="text-center">
+                                <!-- Product name -->
+                                <h5 class="fw-bolder">@product.Name</h5>
+                                <!-- Product price -->
+                                Giá: @String.Format("{0:0,0}", product.Price) $
+                            </div>
+                        </div>
+                        <!-- Product actions -->
+                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                            <div class="text-center">
+                                @using (Html.BeginForm("ThemGioHang", "Cart"))
+                                {
+                                    @Html.Hidden("iMasp", product.Id)
+                                    @Html.Hidden("strURL", Request.Url.ToString())
+                                    <input type="submit" value="Thêm vào giỏ hàng" id="btnGioHang" class="btn btn-outline-dark mt-auto" />
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+<script>
+    $(document).ready(function () {
+        $('#btnGioHang').click(function () {
+            var quantity = $('#txtSoLuong').val();
+            if (quantity <= 0) {
+                alert("Số lượng sản phẩm phải lớn hơn 0");
+                return false; // Ngăn chặn việc gửi biểu mẫu nếu số lượng là không hợp lệ
+            }
+        });
+    });
+</script>
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }), PagedListRenderOptions.ClassicPlusFirstAndLast)

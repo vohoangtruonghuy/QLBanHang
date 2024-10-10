@@ -1,0 +1,79 @@
+﻿@media only screen and (max-width: 768px) {
+    /* Thiết lập font mặc định cho trang */
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Đảm bảo đầu trang không bị che khuất */
+    header {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background-color: #ffffff; /* Màu nền của đầu trang */
+        padding: 10px 0;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Đổ bóng cho đầu trang */
+    }
+
+    /* Thiết lập kiểu dáng cho logo */
+    .logo {
+        max-width: 100px; /* Độ rộng tối đa của logo */
+        height: auto; /* Đảm bảo tỷ lệ hình ảnh được giữ nguyên */
+    }
+
+    /* Thiết lập kiểu dáng cho thanh điều hướng */
+    .navbar {
+        background-color: #333333; /* Màu nền của thanh điều hướng */
+        overflow: hidden;
+    }
+
+        .navbar ul {
+            list-style-type: none; /* Ẩn các dấu đầu dòng */
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar li {
+            float: left;
+        }
+
+            .navbar li a {
+                display: block;
+                color: white;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+            }
+
+                .navbar li a:hover {
+                    background-color: #555555; /* Màu nền khi rê chuột vào */
+                }
+
+    /* Thiết lập kiểu dáng cho nội dung chính */
+    .main-content {
+        padding: 20px;
+    }
+
+    /* CSS cho khung hình IP */
+    .slideshow {
+        width: 100%; /* Đảm bảo khung hiển thị rộng 100% của phần tử cha */
+        height: 400px; /* Đặt chiều cao của khung hiển thị, bạn có thể điều chỉnh kích thước theo nhu cầu */
+        overflow: hidden; /* Ẩn phần nội dung vượt ra ngoài khung hiển thị */
+    }
+
+        .slideshow img {
+            width: 100%; /* Kích thước chiều rộng của hình ảnh là 100% của khung hình */
+            height: 100%; /* Kích thước chiều cao của hình ảnh là 100% của khung hình */
+            object-fit: cover; /* Đảm bảo rằng hình ảnh sẽ vừa với kích thước của phần tử cha mà không làm biến dạng hình ảnh */
+        }
+
+    /* Thiết lập kiểu dáng cho chân trang */
+    footer {
+        background-color: #333333; /* Màu nền của chân trang */
+        color: #ffffff; /* Màu chữ của chân trang */
+        text-align: center;
+        padding: 20px 0;
+    }
+
+}

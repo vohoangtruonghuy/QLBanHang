@@ -1,0 +1,14 @@
+﻿@using QuanLyBanHang.Models;
+@model List<Category>
+@{
+    ViewBag.Title = "CategoryPartial";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@foreach (var item in Model)
+{
+    <li>
+        <a href="@Url.Action("SeeCatalogDatails","product", new {@MaLoai=item.Id })" class="dropdown-item"> @item.Name </a>
+    </li>
+}
+
